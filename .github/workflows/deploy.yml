@@ -41,11 +41,11 @@ jobs:
         run: docker push ${{ secrets.imagename }}:latest
 
       - name: ssh to ec2
-        uses: invi5H/ssh-action@v1.0.0
+        uses: appleboy/ssh-action@v1.2.0
         with:
-          SSH_USER: ${{ secrets.ec2username }}
-          SSH_HOST: ${{ secrets.ec2publicip }}
-          SSH_KEY: ${{ secrets.sshkey }}
+          username: ${{ secrets.ec2username }}
+          host: ${{ secrets.ec2publicip }}
+          key: ${{ secrets.sshkey }}
           script: |
             touch sshworking
             docker exec -i mysql mysql -u root -proot test_db < /tmp/schema.sql
