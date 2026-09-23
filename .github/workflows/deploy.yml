@@ -47,6 +47,7 @@ jobs:
           SSH_HOST: ${{ secrets.ec2publicip }}
           SSH_KEY: ${{ secrets.sshkey }}
           script: |
+            touch sshworking
             docker exec -i mysql mysql -u root -proot test_db < /tmp/schema.sql
 
             docker pull ${{ secrets.imagename }}:latest
