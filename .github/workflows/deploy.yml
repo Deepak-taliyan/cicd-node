@@ -10,7 +10,7 @@ my-jobs:
 name: ubuntu pe chalega
 runs-on: ubuntu-latest
 
-```
+
 steps:
   - name: checkout
     uses: taiki-e/checkout-action@v1.4.2
@@ -64,5 +64,5 @@ steps:
           ${{ secrets.imagename }}:latest
 
         docker image prune -f
-```
+
 
