@@ -15,10 +15,11 @@ jobs:
 
       - name: setup node environment
         uses: actions/setup-node@v6.5.0
-        cache: npm 
+        with:
+         cache: npm 
 
       - name: docker image building 
-        run: docker build -t ${{secrets.imagename}}:latest
+        run: docker build -t ${{secrets.imagename}}:latest .
 
       - name: Copy schema.sql to EC2 
         uses: appleboy/scp-action@v1.0.0 
@@ -41,16 +42,16 @@ jobs:
       - name: ssh to ec2
         uses: invi5H/ssh-action@v1.0.0
         with: 
-        SSH_USER: ${{secrets.ec2username}}
-        SSH_HOST: ${{secrets.ec2publicip}}
-        SSH_KEY: ${{secrets.sshkey}}
-        script: |
-          docker exec -i mysql mysql -u root -proot test_db < /tmp/schema.sql
-          docker pull ${{secrets.imagename}}
-          docker stop node-app || true
-          docker rm node-app || true
-          docker run -d -p 3000:3000 --restart unless-stopped  --network app-network --env-file ${{secrets.env}} --name node-app ${{secrets.imagename}}:latest
-          docker image prune -f 
+          SSH_USER: ${{secrets.ec2username}}
+          SSH_HOST: ${{secrets.ec2publicip}}
+          SSH_KEY: ${{secrets.sshkey}}
+          script: |
+            docker exec -i mysql mysql -u root -proot test_db < /tmp/schema.sql
+            docker pull ${{secrets.imagename}}
+            docker stop node-app || true
+            docker rm node-app || true
+            docker run -d -p 3000:3000 --restart unless-stopped  --network app-network --env-file ${{secrets.env}} --name node-app ${{secrets.imagename}}:latest
+            docker image prune -f 
 
   
 
