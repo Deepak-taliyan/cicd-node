@@ -49,8 +49,8 @@ jobs:
           docker pull ${{secrets.imagename}}
           docker stop node-app || true
           docker rm node-app || true
-        docker run -d -p 3000:3000 --restart unless-stopped  --network app-network --env-file ${{secrets.env}} --name node-app ${{secrets.imagename}}:latest
-       docker image prune -f 
+          docker run -d -p 3000:3000 --restart unless-stopped  --network app-network --env-file ${{secrets.env}} --name node-app ${{secrets.imagename}}:latest
+          docker image prune -f 
 
   
 
