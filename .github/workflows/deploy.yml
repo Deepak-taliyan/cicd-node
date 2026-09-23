@@ -59,7 +59,7 @@ jobs:
               -p 3000:3000 \
               --restart unless-stopped \
               --network app-network \
-              -e DB_HOST=mysql -e DB_USER=root -e DB_PASSWORD=root -e DB_NAME=test_db \
+              -e DB_HOST=mysql -e DB_USER=root -e DB_PASSWORD=root -e DB_NAME=todo_db \
               --name node-app \
               ${{ secrets.imagename }}:latest
 
