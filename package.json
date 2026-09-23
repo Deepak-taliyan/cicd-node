@@ -1,0 +1,16 @@
+{
+  "name": "todo-node-mysql",
+  "version": "1.0.0",
+  "description": "Simple Todo app using Node.js, Express and MySQL",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node --watch app.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0",
+    "mysql2": "^3.14.1"
+  }
+}
