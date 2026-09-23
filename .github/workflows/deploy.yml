@@ -28,7 +28,7 @@ jobs:
           host: ${{ secrets.ec2publicip }}
           username: ${{ secrets.ec2username }}
           key: ${{ secrets.sshkey }}
-          source: "schema.sql"
+          source: "db/schema.sql"
           target: "/tmp/"
 
       - name: docker login
